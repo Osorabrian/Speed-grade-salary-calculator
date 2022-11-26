@@ -1,5 +1,15 @@
+h1{
+    text-align:center;
+    color: #f00;
+}
+
+h2{
+    color: dodgerblue;
+}
+
 #firstChallenge {
         text-align: center;
+        
 }
 
 #secondChallenge {
@@ -8,4 +18,8 @@
 
 #thirdChallenge{
     text-align: center;
+}
+
+#answer{
+    color: #f00;
 }

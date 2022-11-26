@@ -41,12 +41,24 @@ function calculateDelimiter(){
     document.getElementById("answer").innerHTML = demerit
 }
 
-function salary(){
-    const grossSalary = document.getElementById("salary").value
-    
-    let NHIF, PAYE;
-    const personalRelief = 2400;
 
+// function to calculate Net Salary, NSSF, NHIF
+function salary(){
+// initialize variables for the function
+    let grossSalary = document.getElementById("salary").value
+    let NHIF, PAYE, NSSF, netPay;
+    const personalRelief = 2400;
+    
+// if condition statement to calculate NSSF Deductions
+    if(grossSalary > 0 && grossSalary <= 6000){
+        NSSF = (grossSalary * 0.06)
+    }else if(grossSalary > 6000 && grossSalary <= 18000){
+        NSSF = (360 + (grossSalary-6000) * 0.06)
+    }else if(grossSalary > 18000){
+        NSSF = 1080
+    }
+
+// if conditiona statement to calculate NHIF Deductions
     if(grossSalary >= 0 && grossSalary <= 5999){
         NHIF = 150;
     }else if(grossSalary >= 6000 && grossSalary <= 7999){
@@ -85,25 +97,36 @@ function salary(){
         NHIF = "Enter a valid salary"
     }
 
-// conditional statements to calculate PAYE
-    if(grossSalary >= 0 && grossSalary <= 24000){
-        PAYE = (0 + (grossSalary-0) * 0.10 - personalRelief)
-    }else if(grossSalary > 24000 && grossSalary <= 32333){
-        PAYE = (2400 + (grossSalary-24000)*0.25 - personalRelief)
-    }else if(grossSalary > 32333){
-        PAYE = (4483 + (grossSalary-32333)*0.30 - personalRelief)
+    
+
+// if conditional statements to calculate PAYE
+    const insuranceRelief = NHIF*0.15
+    const taxablePay = grossSalary - NSSF
+
+
+    if(taxablePay >= 0 && taxablePay <= 24000){
+        PAYE = (0 + (taxablePay-0) * 0.10 - personalRelief - insuranceRelief )
+    }else if(taxablePay > 24000 && taxablePay <= 32333){
+        PAYE = (2400 + (taxablePay-24000)*0.25 - personalRelief - insuranceRelief ) 
+    }else if(taxablePay > 32333){
+        PAYE = (4483 + (taxablePay-32333)*0.30 - personalRelief - insuranceRelief)
     }else{
         PAYE = "Enter a valid Salary"
     }
 
-    // conditional statements to return 0 if the PAYE is below 0
+// conditional statements to return 0 if the PAYE is below 0
         if(PAYE < 0){
             PAYE = 0;
         }
+// Equation to calculate net salary
+    netPay = grossSalary-PAYE-NSSF-NHIF
 
+// Write values to our html document
     document.getElementById("Grosssalary").innerHTML = `Gross Salary: ${grossSalary}`
     document.getElementById("NHIF").innerHTML = `NHIF: ${NHIF}`
-    document.getElementById("PAYE").innerHTML = `PAYE: ${PAYE}`
+    document.getElementById("PAYE").innerHTML = `PAYE: ${Math.round(PAYE)}`
+    document.getElementById("NSSF").innerHTML = `NSSF Deductions: ${NSSF}`
+    document.getElementById("Netpay").innerHTML = `Net Pay: ${netPay}`
 }
 
 
