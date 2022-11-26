@@ -1,4 +1,6 @@
+// function that calculates the grades of students with values from the prompt
 function promptUser(){
+    // score is a variable storing the result from the prompt
     const score = prompt("What is your score ? ", "50")
     if (score >= 0 && score <= 39){
         alert("You have scored an E")
@@ -15,6 +17,22 @@ function promptUser(){
     }
 }
 
+function calculateDelimiter(){
+    const speed = document.getElementById("speedBox").value
+    let demerit;
+    if (speed > 70){
+        demerit = (speed-70)/5
+        if (demerit > 12){
+            demerit = "License has been suspended."
+        }
+    }else if(speed >= 0 && speed < 70){
+        demerit = "OK"
+    }else{
+        demerit = "Enter a valid number"
+    }
+
+    document.getElementById("answer").innerHTML = demerit
+}
 
 
 
