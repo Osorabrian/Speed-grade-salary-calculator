@@ -31,7 +31,7 @@ function calculateDelimiter(){
         if (demerit > 12){
             demerit = "License has been suspended."
         }
-    }else if(speed >= 0 && speed < 70){
+    }else if(speed >= 0 && speed <= 70){
         demerit = "OK"
     }else{
         demerit = "Enter a valid number"
@@ -118,6 +118,7 @@ function salary(){
         if(PAYE < 0){
             PAYE = 0;
         }
+
 // Equation to calculate net salary
     netPay = grossSalary-PAYE-NSSF-NHIF
 
