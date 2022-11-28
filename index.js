@@ -129,6 +129,3 @@ function salary(){
     document.getElementById("NSSF").innerHTML = `NSSF Deductions: ${NSSF}`
     document.getElementById("Netpay").innerHTML = `Net Pay: ${netPay}`
 }
-
-
-
