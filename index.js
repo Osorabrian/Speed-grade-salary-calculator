@@ -16,6 +16,7 @@ function promptUser(){
     }else{
         alert("TRY AGAIN!!\n Please enter a value between 0 and 100")
     }
+    
 }
 
 // functions that calculates demerits
@@ -50,7 +51,7 @@ function salary(){
     const personalRelief = 2400;
     
 // if condition statement to calculate NSSF Deductions
-    if(grossSalary > 0 && grossSalary <= 6000){
+    if(grossSalary >= 0 && grossSalary <= 6000){
         NSSF = (grossSalary * 0.06)
     }else if(grossSalary > 6000 && grossSalary <= 18000){
         NSSF = (360 + (grossSalary-6000) * 0.06)
@@ -121,6 +122,9 @@ function salary(){
 
 // Equation to calculate net salary
     netPay = grossSalary-PAYE-NSSF-NHIF
+    if(netPay < 0){
+        netPay = 0
+    }
 
 // Write values to our html document
     document.getElementById("Grosssalary").innerHTML = `Gross Salary: ${grossSalary}`
