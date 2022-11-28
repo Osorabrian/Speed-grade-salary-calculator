@@ -27,7 +27,7 @@ function calculateDelimiter(){
     // conditional statement to calculate demrit points
     let demerit;
     if (speed > 70){
-        demerit = `Your Demerits ${(speed-70)/5}`
+        demerit = (speed-70)/5
         if (demerit > 12){
             demerit = "Your License has been suspended."
         }
